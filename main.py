@@ -1,6 +1,8 @@
-from os import path
+import os
 from shutil import copy
-from lumberjack import logger
+from sys import exit
+
+from file_manager import FileManager as fm
 
 class Two():
     """
@@ -10,27 +12,33 @@ class Two():
         """
         """
 
-        pass
-
-    def copy_file(self, file_name, directory_name):
-        """
-        """
+        self.fm = fm()
     
-        print("Copying file...")
-        logger.info("Copying file...")
-        source = file_name
-        destination = directory_name
-        if path.isfile(file_name):
-            copy(source, destination)
-            print(f"{file_name} has been copied.")
-            logger.info(f"{file_name} has been copied.")
-    
-        else:
-            print(f"{file_name} is already there.")
-            logger.info(f"{file_name} is already there.")
-
     def run(self):
         """
         """
 
-        pass
+        while True:
+            command = input("> ").lower().strip()
+
+            if command == "copy file":
+                self.fm.copy_file()
+            
+            if command == "create directory":
+                self.fm.create_directory()
+            
+            if command == "create file":
+                self.fm.create_file()
+
+            if command == "delete directory":
+                self.fm.delete_directory()
+
+            if command == "delete file":
+                self.fm.delete_file()
+
+            if command == "exit" or command == "fin":
+                exit()
+
+
+two = Two()
+two.run()
