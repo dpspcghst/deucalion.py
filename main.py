@@ -1,10 +1,6 @@
-import os
-from shutil import copy
-from sys import exit
+from command_center import CommandCenter as cc
 
-from file_manager import FileManager as fm
-
-class Two():
+class Deucalion():
     """
     """
 
@@ -12,33 +8,15 @@ class Two():
         """
         """
 
-        self.fm = fm()
+        self.cc = cc()
     
     def run(self):
         """
         """
 
         while True:
-            command = input("> ").lower().strip()
+            self.cc.command_center()
 
-            if command == "copy file":
-                self.fm.copy_file()
-            
-            if command == "create directory":
-                self.fm.create_directory()
-            
-            if command == "create file":
-                self.fm.create_file()
-
-            if command == "delete directory":
-                self.fm.delete_directory()
-
-            if command == "delete file":
-                self.fm.delete_file()
-
-            if command == "exit" or command == "fin":
-                exit()
-
-
-two = Two()
-two.run()
+if __name__ == "__main__":
+    deuca = Deucalion()
+    deuca.run()
